@@ -1,0 +1,7 @@
+# NOGLUTEATALY project notes
+
+- Goal: rebuild nogluteataly.com in Next.js/React. UI redesign comes later; keep content and routes, not Elementor styling.
+- Source dump is `nogluteataly.com/`. Do not import WordPress CSS/JS into the Next app.
+- Content of record: `content/site.ts`, `content/tours.ts`, `content/faq.ts`, `content/posts.json`.
+- Header already existed and uses `site.nav` from `@/content/site`.
+- Keep the memory-bank files updated after significant changes.
