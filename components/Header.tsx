@@ -20,6 +20,36 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 960px)");
+
+    function onChange(event: MediaQueryListEvent) {
+      if (!event.matches) setOpen(false);
+    }
+
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <header className={scrolled ? "site-header is-scrolled" : "site-header"}>
       <div className="wrap header-inner">
@@ -31,13 +61,22 @@ export function Header() {
           className="menu-toggle"
           type="button"
           aria-expanded={open}
-          aria-label="Open menu"
+          aria-controls="primary-nav"
+          aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((value) => !value)}
         >
-          Menu
+          <span className="menu-toggle-bars" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
         </button>
 
-        <nav className={open ? "nav-pill open" : "nav-pill"} aria-label="Primary">
+        <nav
+          id="primary-nav"
+          className={open ? "nav-pill open" : "nav-pill"}
+          aria-label="Primary"
+        >
           {site.nav.map((item) => (
             <Link
               key={item.href}
@@ -49,18 +88,30 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-        </nav>
-
-        <div className="header-actions">
           <Link
-            className="btn-book"
+            className="btn-book nav-cta"
             href="/contact"
             onClick={() => setOpen(false)}
           >
             Contact Us
           </Link>
+        </nav>
+
+        <div className="header-actions">
+          <Link className="btn-book" href="/contact">
+            Contact Us
+          </Link>
         </div>
       </div>
+
+      {open ? (
+        <button
+          className="nav-backdrop"
+          type="button"
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+        />
+      ) : null}
     </header>
   );
 }

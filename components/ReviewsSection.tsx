@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { site } from "@/content/site";
+
+const DESKTOP_VISIBLE = 3;
+const MOBILE_QUERY = "(max-width: 960px)";
 
 const PREVIEW_LENGTH = 120;
 
@@ -96,10 +99,43 @@ function ReviewCard({
 
 export function ReviewsSection() {
   const reviews = site.reviews;
-  const visible = 3;
-  const maxStart = Math.max(0, reviews.length - visible);
+  const [visible, setVisible] = useState(DESKTOP_VISIBLE);
   const [start, setStart] = useState(0);
-  const current = reviews.slice(start, start + visible);
+  const dragX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia(MOBILE_QUERY);
+
+    function onChange() {
+      setVisible(media.matches ? 1 : DESKTOP_VISIBLE);
+    }
+
+    onChange();
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  const maxStart = Math.max(0, reviews.length - visible);
+  const startIndex = Math.min(start, maxStart);
+  const current = reviews.slice(startIndex, startIndex + visible);
+  const oneAtATime = visible === 1;
+
+  function goTo(next: number) {
+    setStart(Math.max(0, Math.min(maxStart, next)));
+  }
+
+  function onPointerDown(event: PointerEvent<HTMLDivElement>) {
+    if (!oneAtATime) return;
+    dragX.current = event.clientX;
+  }
+
+  function onPointerUp(event: PointerEvent<HTMLDivElement>) {
+    if (!oneAtATime || dragX.current == null) return;
+    const delta = event.clientX - dragX.current;
+    dragX.current = null;
+    if (delta > 40) goTo(startIndex - 1);
+    if (delta < -40) goTo(startIndex + 1);
+  }
 
   return (
     <section className="reviews-section">
@@ -113,14 +149,21 @@ export function ReviewsSection() {
           <button
             type="button"
             className="reviews-nav reviews-nav-prev"
-            aria-label="Previous reviews"
-            disabled={start === 0}
-            onClick={() => setStart((value) => Math.max(0, value - 1))}
+            aria-label={oneAtATime ? "Previous review" : "Previous reviews"}
+            disabled={startIndex === 0}
+            onClick={() => goTo(startIndex - 1)}
           >
             <Chevron direction="left" />
           </button>
 
-          <div className="reviews-track">
+          <div
+            className="reviews-track"
+            onPointerDown={onPointerDown}
+            onPointerUp={onPointerUp}
+            onPointerCancel={() => {
+              dragX.current = null;
+            }}
+          >
             {current.map((review) => (
               <ReviewCard key={`${review.name}-${review.title}`} review={review} />
             ))}
@@ -129,12 +172,27 @@ export function ReviewsSection() {
           <button
             type="button"
             className="reviews-nav reviews-nav-next"
-            aria-label="Next reviews"
-            disabled={start >= maxStart}
-            onClick={() => setStart((value) => Math.min(maxStart, value + 1))}
+            aria-label={oneAtATime ? "Next review" : "Next reviews"}
+            disabled={startIndex >= maxStart}
+            onClick={() => goTo(startIndex + 1)}
           >
             <Chevron direction="right" />
           </button>
+        </div>
+
+        <div className="reviews-dots" role="group" aria-label="Review slides">
+          {reviews.map((review, index) => (
+            <button
+              key={`${review.name}-${review.title}-dot`}
+              type="button"
+              className={
+                index === startIndex ? "reviews-dot is-active" : "reviews-dot"
+              }
+              aria-label={`Go to review ${index + 1} of ${reviews.length}`}
+              aria-current={index === startIndex ? "true" : undefined}
+              onClick={() => goTo(index)}
+            />
+          ))}
         </div>
       </div>
     </section>

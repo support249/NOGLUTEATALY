@@ -6,6 +6,9 @@
 - Home, Tours, Tour detail, Blog, Blog post, FAQ, Contact
 - Content extracted from the saved site and original pages
 - Homepage header + hero redesigned to the new wireframe (capsule nav, teal CTAs, slide cards)
+- Mobile header: hamburger icon with nav + Contact Us in a dropdown; desktop layout unchanged
+- Mobile reviews: one-at-a-time carousel with lower pill/dot indicator (swipe still works); desktop still shows three cards with arrows
+- Blog tappable text (listing titles, Read More, post “Blog” crumb) uses accent color plus underline
 
 ## Left
 

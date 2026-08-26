@@ -197,12 +197,68 @@ main {
 
 .menu-toggle {
   display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
   border: 0;
-  border-radius: var(--radius-pill);
+  border-radius: 12px;
   background: var(--panel);
-  padding: 0.55rem 0.9rem;
-  font: inherit;
   cursor: pointer;
+}
+
+.menu-toggle-bars {
+  position: relative;
+  display: block;
+  width: 1.2rem;
+  height: 0.85rem;
+}
+
+.menu-toggle-bars span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease;
+}
+
+.menu-toggle-bars span:nth-child(1) {
+  top: 0;
+}
+
+.menu-toggle-bars span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menu-toggle-bars span:nth-child(3) {
+  bottom: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bars span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bars span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bars span:nth-child(3) {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.nav-cta {
+  display: none;
+}
+
+.nav-backdrop {
+  display: none;
 }
 
 /* Hero */
@@ -953,6 +1009,30 @@ main {
   color: var(--accent);
 }
 
+.reviews-dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.35rem;
+}
+
+.reviews-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.42);
+  cursor: pointer;
+  transition: width 0.22s ease, background 0.22s ease;
+}
+
+.reviews-dot.is-active {
+  width: 1.4rem;
+  background: #fff;
+}
+
 .review-card {
   position: relative;
   display: flex;
@@ -1152,7 +1232,15 @@ main {
 }
 
 .blog-card-body h2 a {
-  color: var(--text);
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+
+.blog-card-body h2 a:hover {
+  color: var(--accent-dark);
 }
 
 .blog-card-excerpt {
@@ -1170,12 +1258,31 @@ main {
   margin-top: auto;
   color: var(--accent);
   font-size: 0.92rem;
-  font-weight: 500;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+
+.blog-card-more:hover {
+  color: var(--accent-dark);
 }
 
 .muted,
 .meta {
   color: var(--muted);
+}
+
+.prose a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+}
+
+.prose a:hover {
+  color: var(--accent-dark);
 }
 
 .plain-list,
@@ -1629,28 +1736,58 @@ main {
 
 @media (max-width: 960px) {
   .header-inner {
-    grid-template-columns: auto auto 1fr;
+    position: relative;
+    z-index: 21;
+    grid-template-columns: 1fr auto;
+  }
+
+  .header-actions {
+    display: none;
   }
 
   .nav-pill {
     display: none;
     position: absolute;
-    top: 4.6rem;
-    left: 1rem;
-    right: 1rem;
+    top: calc(100% + 0.55rem);
+    left: 0;
+    right: 0;
     z-index: 20;
     flex-direction: column;
     align-items: stretch;
+    gap: 0.15rem;
     border-radius: 18px;
-    padding: 0.5rem;
+    padding: 0.55rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   }
 
   .nav-pill.open {
     display: flex;
   }
 
+  .nav-pill-link {
+    padding: 0.8rem 1rem;
+  }
+
+  .nav-cta {
+    display: inline-flex;
+    margin: 0.35rem 0.35rem 0.25rem;
+    justify-content: center;
+  }
+
   .menu-toggle {
     display: inline-flex;
+    justify-self: end;
+  }
+
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    border: 0;
+    padding: 0;
+    background: rgba(20, 16, 12, 0.35);
+    cursor: pointer;
   }
 
   .site-header {
@@ -1736,25 +1873,28 @@ main {
 
   .reviews-carousel {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0;
   }
 
   .reviews-track {
     grid-template-columns: 1fr;
+    touch-action: pan-y;
+  }
+
+  .reviews-track .review-card:nth-child(n + 2) {
+    display: none;
+  }
+
+  .review-card {
+    min-height: 16.5rem;
   }
 
   .reviews-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    display: none;
   }
 
-  .reviews-nav-prev {
-    left: 0.25rem;
-  }
-
-  .reviews-nav-next {
-    right: 0.25rem;
+  .reviews-dots {
+    display: flex;
   }
 }
 
