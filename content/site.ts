@@ -10,23 +10,23 @@ export const site = {
   instagram: "https://instagram.com/nogluteataly/",
   nav: [
     { href: "/", label: "Home" },
-    { href: "/tours", label: "Tours" },
-    { href: "/blog", label: "Blog" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/contact", label: "Contact" },
+    { href: "/tours/", label: "Tours" },
+    { href: "/blog/", label: "Blog" },
+    { href: "/faq/", label: "FAQ" },
+    { href: "/contact/", label: "Contact" },
   ],
   footerNav: [
     { href: "/", label: "Home" },
-    { href: "/blog", label: "Blog" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/contact", label: "Contact" },
+    { href: "/blog/", label: "Blog" },
+    { href: "/faq/", label: "FAQ" },
+    { href: "/contact/", label: "Contact" },
   ],
   hero: {
     slides: [
       {
         id: "01",
         title: "Food Lovers' Tour",
-        href: "/tours/the-original-gluten-free-food-lovers-tour-of-rome",
+        href: "/the-original-gluten-free-food-lovers-tour-of-rome/",
         image: "/images/slide-01.jpg",
         heading: "Gluten-Free Food Tours in Rome for Celiacs",
         subheading:
@@ -35,7 +35,7 @@ export const site = {
       {
         id: "02",
         title: "Pasta Lovers' Tour",
-        href: "/tours/the-original-gluten-free-pasta-lovers-tour-of-rome-gelato",
+        href: "/the-original-gluten-free-pasta-lovers-tour-of-rome-gelato/",
         image: "/images/slide-2.jpg",
         heading: "Pasta, Gelato & Tiramisù — Fully Gluten-Free",
         subheading: "A gourmet tasting walk designed for celiac safety",
@@ -43,7 +43,7 @@ export const site = {
       {
         id: "03",
         title: "Cooking Class",
-        href: "/tours/gluten-free-pasta-tiramisu-cooking-class-in-rome",
+        href: "/gluten-free-pasta-tiramisu-cooking-class-in-rome/",
         image: "/images/hero.jpg",
         heading: "Cook Authentic Italian Food Gluten-Free",
         subheading: "Small-group class in a fully celiac-safe kitchen",
@@ -51,7 +51,7 @@ export const site = {
       {
         id: "04",
         title: "Orientation Walk",
-        href: "/tours/gluten-free-rome-safe-food-orientation-walk-with-a-local-expert",
+        href: "/gluten-free-rome-safe-food-orientation-walk-with-a-local-expert/",
         image: "/images/Clienti2.jpg",
         heading: "Start Rome Gluten-Free Without Stress",
         subheading: "A short orientation walk with local expert guidance",

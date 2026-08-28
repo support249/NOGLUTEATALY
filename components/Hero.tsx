@@ -17,7 +17,7 @@ export function Hero() {
           <div className="hero-copy">
             <h1>{active.heading}</h1>
             <p className="hero-subheading">{active.subheading}</p>
-            <Link className="btn-book" href="/tours">
+            <Link className="btn-book" href="/tours/">
               Book Now
             </Link>
           </div>

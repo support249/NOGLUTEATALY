@@ -90,7 +90,7 @@ export function Header() {
           ))}
           <Link
             className="btn-book nav-cta"
-            href="/contact"
+            href="/contact/"
             onClick={() => setOpen(false)}
           >
             Contact Us
@@ -98,7 +98,7 @@ export function Header() {
         </nav>
 
         <div className="header-actions">
-          <Link className="btn-book" href="/contact">
+          <Link className="btn-book" href="/contact/">
             Contact Us
           </Link>
         </div>

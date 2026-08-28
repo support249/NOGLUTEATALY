@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
-};
+  description:
+    "Contact NOGLUTEATALY – your gluten-free food tour experts in Rome. Reach out for bookings and celiac-safe tour enquiries.",
+  path: "/contact/",
+});
 
 function PinIcon() {
   return (

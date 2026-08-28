@@ -142,7 +142,7 @@ export function FaqPageClient({
               <p className="faq-support-text">
                 If you didn&rsquo;t find your answer, feel free to reach out.
               </p>
-              <Link className="faq-support-btn" href="/contact">
+              <Link className="faq-support-btn" href="/contact/">
                 Contact Support
               </Link>
             </div>

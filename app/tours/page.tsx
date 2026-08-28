@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { tours } from "@/content/tours";
+import { contentPath, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Tours",
-};
+  description:
+    "Gluten-free food tours, pasta experiences, cooking classes, and orientation walks in Rome for celiac travelers.",
+  path: "/tours/",
+});
 
 function ArrowIcon() {
   return (
@@ -54,7 +58,7 @@ export default function ToursPage() {
                   <span className="tour-card-badge">Top Picked</span>
                 ) : null}
                 <Link
-                  href={`/tours/${tour.slug}`}
+                  href={contentPath(tour.slug)}
                   className="tour-card-arrow"
                   aria-label={`Open ${tour.title}`}
                 >
@@ -72,7 +76,7 @@ export default function ToursPage() {
                     </span>
                   </div>
                 </div>
-                <Link className="btn-book tour-card-cta" href={`/tours/${tour.slug}`}>
+                <Link className="btn-book tour-card-cta" href={contentPath(tour.slug)}>
                   View Tour
                 </Link>
               </div>

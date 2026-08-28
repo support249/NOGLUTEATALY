@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDate, posts } from "@/content/posts";
+import { contentPath, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Blog",
-};
+  description:
+    "Gluten-free Rome guides, celiac travel tips, and local food advice from NOGLUTEATALY.",
+  path: "/blog/",
+});
 
 const coverImages = [
   "/images/ALE5169-1024x678.jpeg",
@@ -39,10 +43,10 @@ export default function BlogPage() {
               <div className="blog-card-body">
                 <p className="meta blog-card-date">{formatDate(post.date)}</p>
                 <h2>
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  <Link href={contentPath(post.slug)}>{post.title}</Link>
                 </h2>
                 <p className="blog-card-excerpt">{post.excerpt}</p>
-                <Link className="blog-card-more" href={`/blog/${post.slug}`}>
+                <Link className="blog-card-more" href={contentPath(post.slug)}>
                   Read More <span aria-hidden="true">»</span>
                 </Link>
               </div>

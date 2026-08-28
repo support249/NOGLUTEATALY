@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { tours } from "@/content/tours";
+import { contentPath } from "@/lib/seo";
 
 const featured = tours.slice(0, 3);
 
@@ -57,7 +58,7 @@ export function FeaturedToursSection() {
                   <span className="tour-card-badge">Top Picked</span>
                 ) : null}
                 <Link
-                  href={`/tours/${tour.slug}`}
+                  href={contentPath(tour.slug)}
                   className="tour-card-arrow"
                   aria-label={`Open ${tour.title}`}
                 >
@@ -73,7 +74,7 @@ export function FeaturedToursSection() {
                     <span className="tour-card-price-current">{tour.adultPrice}</span>
                   </div>
                 </div>
-                <Link className="btn-book tour-card-cta" href={`/tours/${tour.slug}`}>
+                <Link className="btn-book tour-card-cta" href={contentPath(tour.slug)}>
                   View Tour
                 </Link>
               </div>
@@ -88,7 +89,7 @@ export function FeaturedToursSection() {
               turn a good day in Rome into a great memory — safely and with
               confidence.
             </p>
-            <Link className="btn-book featured-all" href="/tours">
+            <Link className="btn-book featured-all" href="/tours/">
               See all activities
               <span className="featured-all-icon" aria-hidden="true">
                 <ArrowIcon />

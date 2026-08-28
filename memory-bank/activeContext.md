@@ -1,20 +1,27 @@
 # Active Context
 
-Current focus: blog link styling.
+Current focus: SEO migration for domain cutover (GSC parity).
 
 ## Recent work
 
-- Blog links (crumb, post titles, Read More) are underlined in the accent color so they read as tappable
-- Mobile reviews show one card at a time with a pill/dot indicator; desktop still shows three with arrows
-- Mobile header now uses a hamburger icon; nav links and Contact Us sit in a dropdown overlay
-- Linked `public/images/favicon.jpg` as the site favicon via Next.js metadata
-- Primary accent set to `#916133` (hover `#7a5229`) site-wide via CSS variables
-- Restyled `/faq` and `/contact`; tours listing cards; fixed nav blur-on-scroll
-- Fixed `/tours` ChunkLoadError; restyled tours listing
+- SEO migration from `GSC and SEO/` exports: WordPress-style root URLs for tours/posts (`/[slug]/`), section pages with trailing slashes (`/tours/`, `/blog/`, `/faq/`, `/contact/`)
+- `app/[slug]/page.tsx` serves tour and blog content at root slugs; 301 redirects from `/tours/:slug` and `/blog/:slug`
+- `app/sitemap.ts`, `app/robots.ts`, `lib/seo.ts` (canonical URLs, `metadataBase`), `middleware.ts` (www → apex)
+- Per-page metadata with canonical + Open Graph; homepage title/description aligned with GSC keywords
+- Internal links updated across components and `content/site.ts`; blog body links use relative paths
+- WordPress junk redirects: `/tag/*`, `/category/*`, `/feed`, `/wp-admin/*` → home
+- GSC 404/crawled-not-indexed redirects: old `/tour/rome-gluten-free-...` → Food Lovers tour; post/tag feeds → post or home; `/wp-json/*`, `/wp-content/*`, `/wp-includes/*` → home; spam page `keep-in-touch-with-site-visitors-and-boost-loyalty` → home
 
 ## Next steps
 
-- Restyle tour detail `/tours/[slug]` and blog pages
+- Deploy to production; configure host to force HTTPS on apex domain
+- Decommission WordPress on the domain (single stack only)
+- Submit `https://nogluteataly.com/sitemap.xml` in GSC after cutover
+- Restyle tour detail and blog pages visually
 - Add real booking (Bokun/Eventbrite or a custom flow)
-- Import original images (none were saved in the local resource dump)
-- Replace the mailto contact form with a proper backend
+- Import original images; replace mailto contact form with a backend
+
+## Cutover notes
+
+- GSC shows ~93% clicks on homepage; protect `/` H1 and “gluten free food tour Rome” intent
+- Resolve remaining GSC 404 / crawled-not-indexed URLs in Search Console UI when available

@@ -3,6 +3,7 @@ import { Belleza, Jost } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/content/site";
+import { SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const jost = Jost({
@@ -19,11 +20,13 @@ const belleza = Belleza({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: site.name,
     template: `%s – ${site.name}`,
   },
   description: site.description,
+  alternates: { canonical: "/" },
   icons: {
     icon: "/images/favicon.jpg",
     shortcut: "/images/favicon.jpg",
