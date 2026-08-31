@@ -5,7 +5,8 @@ Current focus: SEO migration for domain cutover (GSC parity).
 ## Recent work
 
 - SEO migration from `GSC and SEO/` exports: WordPress-style root URLs for tours/posts (`/[slug]/`), section pages with trailing slashes (`/tours/`, `/blog/`, `/faq/`, `/contact/`)
-- `app/[slug]/page.tsx` serves tour and blog content at root slugs; 301 redirects from `/tours/:slug` and `/blog/:slug`
+- `/tours/` is now the Bokun product-list booking widget; custom tour cards preserved at `/experiences/` (`ToursListing` component)
+- `app/[slug]/page.tsx` serves tour and blog content at root slugs; 301 redirects from legacy `/tours/{tour-slug}` paths and `/blog/:slug`
 - `app/sitemap.ts`, `app/robots.ts`, `lib/seo.ts` (canonical URLs, `metadataBase`), `middleware.ts` (www → apex)
 - Per-page metadata with canonical + Open Graph; homepage title/description aligned with GSC keywords
 - Internal links updated across components and `content/site.ts`; blog body links use relative paths
@@ -18,7 +19,8 @@ Current focus: SEO migration for domain cutover (GSC parity).
 - Decommission WordPress on the domain (single stack only)
 - Submit `https://nogluteataly.com/sitemap.xml` in GSC after cutover
 - Restyle tour detail and blog pages visually
-- Add real booking (Bokun/Eventbrite or a custom flow)
+- Refine Bokun widget styling on `/tours/` if needed
+- Add real booking (widget live on `/tours/`; per-tour embeds still TBD)
 - Import original images; replace mailto contact form with a backend
 
 ## Cutover notes

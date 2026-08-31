@@ -21,7 +21,8 @@ export type Tour = {
 export const tours: Tour[] = [
   {
     slug: "the-original-gluten-free-food-lovers-tour-of-rome",
-    title: "The Original Gluten-Free Food Lovers' Tour of Rome",
+    title:
+      "Celiac-Safe Gluten-Free Food Tour of Rome Pizza Gelato & Tiramisù",
     shortTitle: "Food Lovers' Tour",
     location: "Rome",
     duration: "2.5 – 3 hours",
@@ -88,7 +89,7 @@ export const tours: Tour[] = [
   },
   {
     slug: "the-original-gluten-free-pasta-lovers-tour-of-rome-gelato",
-    title: "The Original Gluten-Free Pasta Lovers' Tour of Rome: Gelato",
+    title: "Rome Gluten-Free Seated Pasta Dinner: Carbonara & Amatriciana",
     shortTitle: "Pasta Lovers' Tour",
     location: "Rome",
     duration: "2.5 – 3 hours",
@@ -144,8 +145,7 @@ export const tours: Tour[] = [
   },
   {
     slug: "gluten-free-pasta-tiramisu-cooking-class-in-rome",
-    title:
-      "Small Group Gluten-Free Pasta & Tiramisu Cooking Class in Rome (Celiac-Safe)",
+    title: "Gluten Free Pasta And Tiramisu Cooking Class In Rome For Celiacs",
     shortTitle: "Pasta & Tiramisù Cooking Class",
     location: "Rome",
     duration: "Cooking class",

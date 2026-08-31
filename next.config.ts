@@ -28,10 +28,29 @@ const nextConfig: NextConfig = {
         destination: "/:slug/",
         permanent: true,
       },
-      // Legacy Next.js paths → WordPress root slugs (GSC-indexed URLs)
+      // Legacy Next.js tour detail paths → WordPress root slugs (GSC-indexed URLs)
+      // Explicit slugs only so /tours/ itself stays the Bokun booking page
       {
-        source: "/tours/:slug",
-        destination: "/:slug/",
+        source: "/tours/the-original-gluten-free-food-lovers-tour-of-rome",
+        destination: "/the-original-gluten-free-food-lovers-tour-of-rome/",
+        permanent: true,
+      },
+      {
+        source: "/tours/the-original-gluten-free-pasta-lovers-tour-of-rome-gelato",
+        destination:
+          "/the-original-gluten-free-pasta-lovers-tour-of-rome-gelato/",
+        permanent: true,
+      },
+      {
+        source: "/tours/gluten-free-pasta-tiramisu-cooking-class-in-rome",
+        destination: "/gluten-free-pasta-tiramisu-cooking-class-in-rome/",
+        permanent: true,
+      },
+      {
+        source:
+          "/tours/gluten-free-rome-safe-food-orientation-walk-with-a-local-expert",
+        destination:
+          "/gluten-free-rome-safe-food-orientation-walk-with-a-local-expert/",
         permanent: true,
       },
       {

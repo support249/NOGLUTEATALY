@@ -6,9 +6,10 @@
 - Shared chrome: `components/Header.tsx`, `components/Footer.tsx`
 - SEO helpers in `lib/seo.ts` (`SITE_URL`, `pageMetadata`, `contentPath`); slug resolution in `lib/content-slug.ts`
 - Routes match **WordPress/GSC URLs**:
-  - Section pages: `/`, `/tours/`, `/blog/`, `/faq/`, `/contact/`
+  - Section pages: `/`, `/tours/` (Bokun booking widget), `/experiences/` (preserved custom tour cards), `/blog/`, `/faq/`, `/contact/`
   - Tour and blog **content at root**: `/[slug]/` (not under `/tours/` or `/blog/`)
-  - Legacy `/tours/:slug` and `/blog/:slug` → 301 to `/[slug]/`
+  - Legacy `/tours/{tour-slug}` and `/blog/:slug` → 301 to `/[slug]/`
+- Bokun embed: `components/BokunProductListWidget.tsx` loads WidgetsLoader + `.bokunWidget` product list
 - `trailingSlash: true`; `middleware.ts` redirects `www` → apex
 - `app/sitemap.ts` and `app/robots.ts` for crawlers
 - The WordPress dump in `nogluteataly.com/` is an archive, not runtime code

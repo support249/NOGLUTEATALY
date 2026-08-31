@@ -3,7 +3,14 @@ import { posts } from "@/content/posts";
 import { tours } from "@/content/tours";
 import { SITE_URL } from "@/lib/seo";
 
-const sectionPaths = ["/", "/tours/", "/blog/", "/faq/", "/contact/"];
+const sectionPaths = [
+  "/",
+  "/tours/",
+  "/experiences/",
+  "/blog/",
+  "/faq/",
+  "/contact/",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

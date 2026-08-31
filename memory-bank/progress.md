@@ -10,6 +10,7 @@
 - Mobile reviews: one-at-a-time carousel with lower pill/dot indicator (swipe still works); desktop still shows three cards with arrows
 - Blog tappable text (listing titles, Read More, post “Blog” crumb) uses accent color plus underline
 - **SEO migration:** GSC-matched URLs, sitemap/robots, canonical metadata, 301 redirects, www consolidation
+- **Bokun on `/tours/`:** product-list widget; custom card listing preserved at `/experiences/`
 
 ## Left
 
