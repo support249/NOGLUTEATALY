@@ -21,7 +21,8 @@ Current focus: SEO migration for domain cutover (GSC parity).
 - Restyle tour detail and blog pages visually
 - Refine Bokun widget styling on `/tours/` if needed
 - Add real booking (widget live on `/tours/`; per-tour embeds still TBD)
-- Import original images; replace mailto contact form with a backend
+- Import original images; contact form now uses Brevo transactional email (`/api/contact`)
+- Add Brevo env vars on host (`BREVO_API_KEY`, `BREVO_SENDER_EMAIL`, optional `CONTACT_TO_EMAIL`)
 
 ## Cutover notes
 

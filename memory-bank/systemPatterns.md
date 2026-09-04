@@ -9,7 +9,8 @@
   - Section pages: `/`, `/tours/` (Bokun booking widget), `/experiences/` (preserved custom tour cards), `/blog/`, `/faq/`, `/contact/`
   - Tour and blog **content at root**: `/[slug]/` (not under `/tours/` or `/blog/`)
   - Legacy `/tours/{tour-slug}` and `/blog/:slug` → 301 to `/[slug]/`
-- Bokun embed: `components/BokunProductListWidget.tsx` loads WidgetsLoader + `.bokunWidget` product list
+- Contact form: `components/ContactForm.tsx` → `POST /api/contact` → Brevo `POST https://api.brevo.com/v3/smtp/email`
+- Secrets: `BREVO_API_KEY`, `BREVO_SENDER_EMAIL`, optional `BREVO_SENDER_NAME`, `CONTACT_TO_EMAIL`
 - `trailingSlash: true`; `middleware.ts` redirects `www` → apex
 - `app/sitemap.ts` and `app/robots.ts` for crawlers
 - The WordPress dump in `nogluteataly.com/` is an archive, not runtime code

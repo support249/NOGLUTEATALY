@@ -5,9 +5,9 @@ import { tours } from "@/content/tours";
 const featured = tours.slice(0, 3);
 
 const stats = [
-  { label: "Experiences", value: "4" },
-  { label: "Guest rating", value: "5★" },
-  { label: "Max group", value: "12" },
+  { label: "Experiences", value: "3" },
+  { label: "Guest rating", value: "4.9" },
+  { label: "Reviews", value: "100+" },
 ];
 
 function ArrowIcon() {

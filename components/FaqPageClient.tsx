@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type FaqItem = {
   question: string;
@@ -49,6 +49,10 @@ function groupId(title: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+function itemKey(groupTitle: string, question: string) {
+  return `${groupId(groupTitle)}::${question}`;
+}
+
 export function FaqPageClient({
   groups,
   disclaimer,
@@ -56,6 +60,8 @@ export function FaqPageClient({
 }: FaqPageClientProps) {
   const [query, setQuery] = useState("");
   const [activeTopic, setActiveTopic] = useState("all");
+  const [scrollToId, setScrollToId] = useState<string | null>(null);
+  const [openKey, setOpenKey] = useState<string | null>(null);
 
   const topics = useMemo(
     () => [
@@ -70,12 +76,9 @@ export function FaqPageClient({
 
   const normalizedQuery = query.trim().toLowerCase();
 
+  // Keep all sections visible so topic clicks can scroll to each one
   const visibleGroups = useMemo(() => {
     return groups
-      .filter((group) => {
-        if (activeTopic === "all") return true;
-        return groupId(group.title) === activeTopic;
-      })
       .map((group) => ({
         ...group,
         items: group.items.filter((item) => {
@@ -87,21 +90,38 @@ export function FaqPageClient({
         }),
       }))
       .filter((group) => group.items.length > 0);
-  }, [groups, activeTopic, normalizedQuery]);
+  }, [groups, normalizedQuery]);
 
-  function selectTopic(id: string) {
-    setActiveTopic(id);
-    if (id === "all") return;
-    window.requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({
+  useEffect(() => {
+    if (!scrollToId) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      const target =
+        scrollToId === "all"
+          ? document.getElementById("faq-top")
+          : document.getElementById(scrollToId);
+
+      target?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
+      setScrollToId(null);
     });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [scrollToId, visibleGroups]);
+
+  function selectTopic(id: string) {
+    setActiveTopic(id);
+    setScrollToId(id);
+  }
+
+  function toggleItem(key: string) {
+    setOpenKey((current) => (current === key ? null : key));
   }
 
   return (
-    <section className="section faq-page">
+    <section className="section faq-page" id="faq-top">
       <div className="wrap faq-page-inner">
         <div className="faq-layout">
           <aside className="faq-sidebar">
@@ -157,14 +177,30 @@ export function FaqPageClient({
               >
                 <p className="faq-badge">{group.title}</p>
                 <div className="faq-list">
-                  {group.items.map((item) => (
-                    <details className="faq-item" key={item.question}>
-                      <summary>
-                        <span>{item.question}</span>
-                      </summary>
-                      <p>{item.answer}</p>
-                    </details>
-                  ))}
+                  {group.items.map((item) => {
+                    const key = itemKey(group.title, item.question);
+                    const isOpen = openKey === key;
+
+                    return (
+                      <div
+                        className={isOpen ? "faq-item is-open" : "faq-item"}
+                        key={item.question}
+                      >
+                        <button
+                          type="button"
+                          className="faq-item-trigger"
+                          aria-expanded={isOpen}
+                          onClick={() => toggleItem(key)}
+                        >
+                          <span>{item.question}</span>
+                          <span className="faq-item-icon" aria-hidden="true">
+                            {isOpen ? "−" : "+"}
+                          </span>
+                        </button>
+                        {isOpen ? <p>{item.answer}</p> : null}
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             ))}

@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { site } from "@/content/site";
 
 function ArrowIcon() {
   return (
@@ -18,87 +17,148 @@ function ArrowIcon() {
   );
 }
 
+type StatusKind = "idle" | "loading" | "success" | "error";
+
 export function ContactForm() {
   const [status, setStatus] = useState("");
+  const [statusKind, setStatusKind] = useState<StatusKind>("idle");
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const firstName = String(data.get("firstName") ?? "");
-    const lastName = String(data.get("lastName") ?? "");
-    const name = [firstName, lastName].filter(Boolean).join(" ");
-    const email = String(data.get("email") ?? "");
-    const phone = String(data.get("phone") ?? "");
-    const message = String(data.get("message") ?? "");
-    const subject = encodeURIComponent(`Enquiry from ${name || "website"}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`,
-    );
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
-    setStatus("Your email app should open with this message.");
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    setStatusKind("loading");
+    setStatus("Sending your message…");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: String(data.get("firstName") ?? ""),
+          lastName: String(data.get("lastName") ?? ""),
+          email: String(data.get("email") ?? ""),
+          phone: String(data.get("phone") ?? ""),
+          message: String(data.get("message") ?? ""),
+          website: String(data.get("website") ?? ""),
+        }),
+      });
+
+      const result = (await response.json().catch(() => ({}))) as {
+        error?: string;
+      };
+
+      if (!response.ok) {
+        setStatusKind("error");
+        setStatus(result.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      form.reset();
+      setStatusKind("success");
+      setStatus("Thanks — your message was sent. We’ll reply within 24 hours.");
+    } catch {
+      setStatusKind("error");
+      setStatus("Network error. Please check your connection and try again.");
+    }
   }
 
   return (
-    <form className="contact-form" onSubmit={onSubmit}>
+    <form className="contact-form contact-form-compact" onSubmit={onSubmit}>
       <div className="contact-form-row">
         <label>
-          First Name
+          <span className="sr-only">First Name</span>
           <input
             name="firstName"
             type="text"
             required
-            placeholder="Enter your first name..."
+            placeholder="First Name"
             autoComplete="given-name"
+            disabled={statusKind === "loading"}
           />
         </label>
         <label>
-          Last Name
+          <span className="sr-only">Last Name</span>
           <input
             name="lastName"
             type="text"
             required
-            placeholder="Enter your last name..."
+            placeholder="Last Name"
             autoComplete="family-name"
+            disabled={statusKind === "loading"}
           />
         </label>
       </div>
       <label>
-        Email
+        <span className="sr-only">Email</span>
         <input
           name="email"
           type="email"
           required
-          placeholder="Enter your email address..."
+          placeholder="Email"
           autoComplete="email"
+          disabled={statusKind === "loading"}
         />
       </label>
       <label>
-        Phone
+        <span className="sr-only">Phone</span>
         <input
           name="phone"
           type="tel"
-          placeholder="Enter your phone number..."
+          placeholder="Phone"
           autoComplete="tel"
+          disabled={statusKind === "loading"}
         />
       </label>
       <label>
-        How can we help you?
+        <span className="sr-only">How can we help you?</span>
         <textarea
           name="message"
-          rows={5}
+          rows={4}
           required
-          placeholder="Enter your message..."
+          placeholder="How can we help you?"
+          disabled={statusKind === "loading"}
         />
       </label>
+
+      {/* Honeypot — hidden from people, bots often fill it */}
+      <label className="contact-honeypot" aria-hidden="true">
+        Website
+        <input
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </label>
+
       <div className="contact-form-actions">
-        <button className="btn-contact" type="submit">
-          Send Message
+        <button
+          className="btn-contact"
+          type="submit"
+          disabled={statusKind === "loading"}
+        >
+          {statusKind === "loading" ? "Sending…" : "Send Message"}
           <span className="btn-contact-arrow" aria-hidden="true">
             <ArrowIcon />
           </span>
         </button>
       </div>
-      {status ? <p className="contact-form-status">{status}</p> : null}
+      {status ? (
+        <p
+          className={
+            statusKind === "error"
+              ? "contact-form-status is-error"
+              : statusKind === "success"
+                ? "contact-form-status is-success"
+                : "contact-form-status"
+          }
+          role="status"
+        >
+          {status}
+        </p>
+      ) : null}
     </form>
   );
 }
