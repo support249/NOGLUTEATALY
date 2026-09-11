@@ -14,7 +14,7 @@ export default function ExperiencesPage() {
   return (
     <ToursListing
       title="Explore Our Experiences"
-      subtitle="Find the best gluten-free travel choice in Rome — food tours, a pasta experience, a cooking class, and a short orientation walk."
+      subtitle="Find the best gluten-free travel choice in Rome, food tours, a pasta experience, a cooking class, and a short orientation walk."
     />
   );
 }

@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { site } from "@/content/site";
+import { mixedReviews, reviewPlatform } from "@/lib/reviews-order";
 
 const DESKTOP_VISIBLE = 3;
 const MOBILE_QUERY = "(max-width: 960px)";
@@ -31,11 +33,19 @@ function Chevron({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-function TripadvisorDots() {
+function TripadvisorRating() {
   return (
     <span className="review-rating" aria-label="5 out of 5">
       {Array.from({ length: 5 }).map((_, index) => (
-        <span key={index} className="review-dot" />
+        <Image
+          key={index}
+          src="/icons/f.svg"
+          alt=""
+          width={16}
+          height={16}
+          aria-hidden="true"
+          className="review-rating-bubble"
+        />
       ))}
     </span>
   );
@@ -43,18 +53,13 @@ function TripadvisorDots() {
 
 function VerifiedBadge() {
   return (
-    <span className="review-verified" title="Verified review" aria-label="Verified">
-      <svg width="10" height="10" viewBox="0 0 20 20" aria-hidden="true">
-        <path
-          d="M4.5 10.5l3.5 3.5 7.5-8"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </span>
+    <Image
+      src="/icons/ti-verified.svg"
+      alt="Verified review"
+      width={16}
+      height={16}
+      className="review-verified"
+    />
   );
 }
 
@@ -70,19 +75,38 @@ function ReviewCard({
       ? review.text
       : `${review.text.slice(0, PREVIEW_LENGTH).trimEnd()}…`;
 
+  const platform = reviewPlatform(review);
+  const platformIcon =
+    platform === "getyourguide"
+      ? "/icons/getyourguide-svgrepo-com.svg"
+      : platform === "viator"
+        ? "/icons/viator-converted-from-jpeg.svg"
+        : "/icons/TA-icon.svg";
+  const platformClass =
+    platform === "getyourguide"
+      ? "review-platform review-platform-gyg"
+      : platform === "viator"
+        ? "review-platform review-platform-viator"
+        : "review-platform";
+
   return (
     <article className="review-card">
       <div className="review-avatar-wrap" aria-hidden="true">
         <div className="review-avatar">{initials(review.name)}</div>
-        <span className="review-platform">TA</span>
+        <Image
+          src={platformIcon}
+          alt=""
+          width={24}
+          height={24}
+          className={platformClass}
+        />
       </div>
       <h3 className="review-name">{review.name}</h3>
       <p className="review-when">{review.when}</p>
       <div className="review-rating-row">
-        <TripadvisorDots />
+        <TripadvisorRating />
         <VerifiedBadge />
       </div>
-      <p className="review-title">{review.title}</p>
       <p className="review-text">{body}</p>
       {needsTruncate ? (
         <button
@@ -98,7 +122,7 @@ function ReviewCard({
 }
 
 export function ReviewsSection() {
-  const reviews = site.reviews;
+  const reviews = mixedReviews;
   const [visible, setVisible] = useState(DESKTOP_VISIBLE);
   const [start, setStart] = useState(0);
   const dragX = useRef<number | null>(null);

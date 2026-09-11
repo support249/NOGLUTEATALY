@@ -18,7 +18,7 @@ export function Hero() {
             <h1>{active.heading}</h1>
             <p className="hero-subheading">{active.subheading}</p>
             <Link className="btn-book" href="/tours/">
-              Book Now
+              Check Availability
             </Link>
           </div>
 

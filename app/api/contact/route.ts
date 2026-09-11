@@ -74,6 +74,12 @@ export async function POST(request: Request) {
     );
   }
 
+  if (senderEmail.toLowerCase() === toEmail.toLowerCase()) {
+    console.warn(
+      "BREVO_SENDER_EMAIL and CONTACT_TO_EMAIL are the same; Gmail will show the sender as “me”. Use a different From address (e.g. noreply@your-domain).",
+    );
+  }
+
   // SMTP keys (xsmtpsib-) cannot call the REST API — need API keys (xkeysib-)
   if (apiKey.startsWith("xsmtpsib-")) {
     console.error(
@@ -94,7 +100,7 @@ export async function POST(request: Request) {
     "",
     `Name: ${name}`,
     `Email: ${email}`,
-    `Phone: ${phone || "—"}`,
+    `Phone: ${phone || "n/a"}`,
     "",
     "Message:",
     message,
@@ -116,7 +122,7 @@ export async function POST(request: Request) {
           </tr>
           <tr>
             <td style="padding: 0.35rem 1rem 0.35rem 0; font-weight: bold;">Phone</td>
-            <td style="padding: 0.35rem 0;">${escapeHtml(phone || "—")}</td>
+            <td style="padding: 0.35rem 0;">${escapeHtml(phone || "n/a")}</td>
           </tr>
         </table>
         <p style="font-weight: bold; margin-bottom: 0.35rem;">Message</p>
@@ -134,7 +140,11 @@ export async function POST(request: Request) {
         "api-key": apiKey,
       },
       body: JSON.stringify({
-        sender: { name: senderName, email: senderEmail },
+        // Verified Brevo address must stay in `email`; visitor goes in `name` for inbox scanning.
+        sender: {
+          name: name ? `${name} · ${senderName}` : senderName,
+          email: senderEmail,
+        },
         to: [{ email: toEmail, name: site.name }],
         replyTo: { email, name: name || email },
         subject,

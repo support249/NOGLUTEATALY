@@ -35,7 +35,7 @@ export function FeaturedToursSection() {
           </p>
           <h2>Find Out The Best Travel Choice</h2>
           <p className="featured-subtitle">
-            Pick from our most booked celiac-safe tours — walking tastings,
+            Pick from our most booked celiac-safe tours, walking tastings,
             pasta experiences, and cooking classes in Rome.
           </p>
         </div>
@@ -74,7 +74,7 @@ export function FeaturedToursSection() {
                   </div>
                 </div>
                 <Link className="btn-book tour-card-cta" href="/tours/">
-                  View Tour
+                  Check Availability
                 </Link>
               </div>
             </article>
@@ -85,7 +85,7 @@ export function FeaturedToursSection() {
           <div className="featured-cta-block">
             <p>
               Loved by gluten-free travelers, these are the experiences that
-              turn a good day in Rome into a great memory — safely and with
+              turn a good day in Rome into a great memory safely and with
               confidence.
             </p>
             <Link className="btn-book featured-all" href="/tours/">

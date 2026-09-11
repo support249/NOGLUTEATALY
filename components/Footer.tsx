@@ -79,9 +79,9 @@ export function Footer() {
         <div className="footer-brand">
           <p className="footer-logo">{site.name}</p>
           <p>
-            Eat pizza, pasta, gelato and tiramisù without worrying about
-            cross-contamination. We only take you to tested and certified
-            celiac-safe places.
+            Eat pizza, pasta, gelato and tiramisù with confidence. We take you
+            to carefully vetted celiac-safe venues and work to reduce
+            cross-contact risk at every stop.
           </p>
         </div>
 

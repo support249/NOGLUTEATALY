@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { allContentSlugs, resolveContentSlug } from "@/lib/content-slug";
 import { pageMetadata } from "@/lib/seo";
-import { formatDate, getPost, splitParagraphs } from "@/content/posts";
+import { formatDate, getPost } from "@/content/posts";
+import { PostBody } from "@/components/PostBody";
 import { getTour } from "@/content/tours";
 
 type Props = {
@@ -131,9 +132,7 @@ export default async function ContentSlugPage({ params }: Props) {
           <Link href="/blog/">Blog</Link> · {formatDate(post.date)}
         </p>
         <h1>{post.title}</h1>
-        {splitParagraphs(post.body).map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+        <PostBody body={post.body} />
       </div>
     </section>
   );

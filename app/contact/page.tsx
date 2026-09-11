@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
-    "Contact NOGLUTEATALY – your gluten-free food tour experts in Rome. Reach out for bookings and celiac-safe tour enquiries.",
+    "Contact NOGLUTEATALY your gluten-free food tour experts in Rome. Reach out for bookings and celiac-safe tour enquiries.",
   path: "/contact/",
 });
 
@@ -102,9 +102,9 @@ export default function ContactPage() {
         <div className="contact-info">
           <h1 className="contact-heading">We&rsquo;d Love To Hear From You</h1>
           <p className="contact-lead">
-            Contact NOGLUTEATALY – Your Gluten-Free Experts in Rome. Reach out
+            Contact NOGLUTEATALY Your Gluten-Free Experts in Rome. Reach out
             for details about our celiac-safe food tours, private experiences,
-            or group bookings. We&rsquo;ll reply within 24 hours — gluten-free
+            or group bookings. We&rsquo;ll reply within 24 hours. Gluten-free
             travelers are our priority!
           </p>
 

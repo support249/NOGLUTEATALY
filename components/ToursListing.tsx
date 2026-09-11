@@ -25,7 +25,7 @@ type ToursListingProps = {
 
 export function ToursListing({
   title = "Explore Our Tours",
-  subtitle = "Find the best gluten-free travel choice in Rome — food tours, a pasta experience, a cooking class, and a short orientation walk.",
+  subtitle = "Find the best gluten-free travel choice in Rome, food tours, a pasta experience, a cooking class, and a short orientation walk.",
 }: ToursListingProps) {
   return (
     <section className="section featured-section tours-page">
@@ -77,7 +77,7 @@ export function ToursListing({
                   className="btn-book tour-card-cta"
                   href={contentPath(tour.slug)}
                 >
-                  View Tour
+                  Check Availability
                 </Link>
               </div>
             </article>

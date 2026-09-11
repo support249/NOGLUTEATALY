@@ -18,11 +18,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ReviewsSection />
+      <FeaturedToursSection />
       <SafetySection />
       <VenuesSection />
-      <FeaturedToursSection />
       <AboutSection />
-      <ReviewsSection />
     </>
   );
 }

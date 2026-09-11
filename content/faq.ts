@@ -35,7 +35,7 @@ export const faqGroups = [
       {
         question: "Are all tasting locations gluten-free?",
         answer:
-          "Yes. Every tasting stop is carefully selected. Each venue we visit is either 100% gluten-free, or a venue with a separate kitchen and dedicated gluten-free preparation, clearly separated from gluten-containing foods. We do not include generic restaurants without proper gluten-free separation.",
+          "Yes. Each tasting stop is carefully vetted for celiac safety. Partners are typically fully gluten-free, use a separate kitchen or dedicated gluten-free prep, or follow trusted protocols we know well. We do not add generic restaurants without proper separation. Tell us your sensitivity level so we can adapt the tour.",
       },
       {
         question: "How do you manage safety during the food tour?",
@@ -70,7 +70,7 @@ export const faqGroups = [
       {
         question: "How does safety work during the cooking class?",
         answer:
-          "Safety is built into every step of the class. We use dedicated gluten-free equipment, explain preparation steps clearly, and prevent cross-contamination through exclusive use of tools and surfaces. The class is educational, relaxed, and enjoyable for both celiac and non-celiac guests.",
+          "Safety is built into every step of the class. We use dedicated gluten-free equipment, explain preparation steps clearly, and reduce cross-contact risk through exclusive use of tools and surfaces in a fully gluten-free environment. The class is educational, relaxed, and enjoyable for both celiac and non-celiac guests.",
       },
       {
         question: "Is the cooking class suitable for non-celiac guests?",

@@ -23,7 +23,7 @@ export function SafetySection() {
       <div className="wrap safety-grid">
         <div className="safety-media">
           <Image
-            src="/images/ChatGPT-Image-Mar-26-2026-10_13_49-AM.png"
+            src="/images/caracel.jpg"
             alt="Gluten-free Italian dishes prepared for a celiac-safe food experience"
             fill
             sizes="(max-width: 960px) 100vw, 48vw"
@@ -38,7 +38,7 @@ export function SafetySection() {
           <h2>Why Our Tours Are Designed for Celiac Safety</h2>
           <p className="safety-lead">
             We understand that eating out with celiac disease isn’t just a
-            preference — it’s a medical necessity. Our gluten-free food tours in
+            preference, it’s a medical necessity. Our gluten-free food tours in
             Rome are carefully designed to reduce stress and uncertainty, so you
             can experience the city’s food culture with confidence.
           </p>

@@ -32,7 +32,7 @@ export const tours: Tour[] = [
     groupSize: "Max 12 people",
     meetingPoint: "Piazza Navona, in front of the Fontana dei Quattro Fiumi",
     summary:
-      "Discover Rome without gluten — and without stress. Enjoy a delicious, 100% gluten-free journey through Rome’s historic center, tasting pizza, supplì, tiramisù, gelato, and espresso — all with expert guidance and small-group attention.",
+      "Discover Rome without gluten, and without stress. Enjoy a delicious, 100% gluten-free journey through Rome’s historic center, tasting pizza, supplì, tiramisù, gelato, and espresso, all with expert guidance and small-group attention.",
     image: "/images/IMG-20250630-WA00661.jpeg",
     highlights: [
       "Taste Rome’s best gluten-free pizza al taglio",
@@ -84,7 +84,7 @@ export const tours: Tour[] = [
       "Walking distance is about 1.5 km. Wear comfortable shoes and bring a water bottle.",
       "Please arrive 10 minutes early. Late arrivals cannot be accommodated.",
       "Inform us of any dietary restrictions or allergies.",
-      "All stops are certified gluten-free (AIC). Complete absence of cross-contamination cannot be guaranteed for severe allergies.",
+      "Stops are carefully vetted celiac-safe venues (fully gluten-free kitchens, dedicated prep, and/or trusted gluten-free protocols). Cross-contamination cannot be completely ruled out; we plan each tour to reduce risk. Please share allergies and sensitivity in advance.",
     ],
   },
   {
@@ -99,7 +99,7 @@ export const tours: Tour[] = [
     groupSize: "Max 12 people",
     meetingPoint: "Piazza Navona, in front of the Fontana dei Quattro Fiumi",
     summary:
-      "Experience Rome like a true foodie — with a full tasting of iconic gluten-free dishes. This 2.5–3 hour walking tour takes you through some of Rome’s most beautiful neighborhoods, combining gluten-free gourmet cuisine with a relaxed stroll through historic streets and lively piazzas.",
+      "Experience Rome like a true foodie, with a full tasting of iconic gluten-free dishes. This 2.5–3 hour walking tour takes you through some of Rome’s most beautiful neighborhoods, combining gluten-free gourmet cuisine with a relaxed stroll through historic streets and lively piazzas.",
     image: "/images/slide-2.jpg",
     highlights: [
       "Delight in artisanal gluten-free gelato",
@@ -140,7 +140,7 @@ export const tours: Tour[] = [
     ],
     notes: [
       "Please arrive 10 minutes early. Late arrivals cannot be accommodated.",
-      "All stops are certified gluten-free (AIC).",
+      "Stops are carefully vetted celiac-safe venues. Some partners are fully gluten-free or AIC-associated; we confirm suitability before each season. Please tell us about celiac needs and other allergies when you book.",
     ],
   },
   {
@@ -184,7 +184,7 @@ export const tours: Tour[] = [
     childPrice: "€60 (0–10 years)",
     meetingPoint: "Piazza Farnese",
     summary:
-      "A practical, guided introduction to eating gluten-free in Rome. This is not a traditional food tour and not a full meal — it is designed to help you feel safe, confident, and independent from day one.",
+      "A practical, guided introduction to eating gluten-free in Rome. This is not a traditional food tour and not a full meal. It is designed to help you feel safe, confident, and independent from day one.",
     image: "/images/IMG-20251018-WA0028-scaled.jpg",
     highlights: [
       "Taste a traditional Roman gluten-free supplì",
@@ -196,7 +196,7 @@ export const tours: Tour[] = [
     ],
     included: [
       "Guided orientation walk",
-      "Supplì and gelato tastings from certified gluten-free (AIC) locations",
+      "Supplì and gelato tastings at carefully vetted celiac-safe venues",
       "Digital gluten-free shortlist of Rome",
     ],
     itinerary: [

@@ -57,7 +57,9 @@ export function ContactForm() {
 
       form.reset();
       setStatusKind("success");
-      setStatus("Thanks — your message was sent. We’ll reply within 24 hours.");
+      setStatus(
+        "Thank you for reaching NOGLUTEATALY, we will be in touch soon.",
+      );
     } catch {
       setStatusKind("error");
       setStatus("Network error. Please check your connection and try again.");

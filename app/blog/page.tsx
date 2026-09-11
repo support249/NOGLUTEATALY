@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
 const coverImages = [
   "/images/ALE5169-1024x678.jpeg",
   "/images/20251114_105643-scaled.jpg",
-  "/images/ChatGPT-Image-Mar-26-2026-10_13_49-AM.png",
+  "/images/caracel.jpg",
   "/images/IMG-20251018-WA0034-768x1024.jpg",
   "/images/IMG-20260210-WA0016-scaled.jpg",
   "/images/IMG-20250630-WA0066-1.jpg",

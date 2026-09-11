@@ -91,7 +91,7 @@ export function VenuesSection() {
         <p className="venues-eyebrow">
           <span aria-hidden="true">»</span> Tested · Trusted · Safe
         </p>
-        <h2>Verified GF Venues</h2>
+        <h2>Carefully Vetted Celiac-Safe Venues</h2>
 
         <div className="venues-grid">
           {site.features.map((feature, index) => {
